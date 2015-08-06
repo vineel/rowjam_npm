@@ -1,8 +1,6 @@
 /**
   Rowjam
   A javascript library which makes it easier to process data from a database.
-  
-  
 */
 
 module.exports = Rowjam;
@@ -12,9 +10,9 @@ var value = null;
 function Rowjam(table, makeCopy) {
   var newMe = Object.create(Rowjam.prototype);
   if (makeCopy === false) {
-    newMe.value = Rowjam.copyValue(table);
-  } else {
     newMe.value = table;        
+  } else {
+    newMe.value = Rowjam.copyValue(table);
   }
   return newMe;
 }
@@ -253,6 +251,9 @@ Rowjam.prototype.dump = function() {
   return this;
 }
 
+Rowjam.print = function(data) {
+  console.log(JSON.stringify(data, null, 4));  
+}
 
 Rowjam.prototype.values = function(column, unique) {
   var table = this.value;
