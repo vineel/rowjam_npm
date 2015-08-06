@@ -1,5 +1,5 @@
 {
-  "name": "rowjam",
+  "name": "rowjam_npm",
   "version": "0.1.0",
   "description": " A javascript library which makes it easier to process data from a database.",
   "main": "index.js",
@@ -15,5 +15,13 @@
     "utility"
   ],
   "author": "Vineel Shah <vshah@glgroup.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vineel/rowjam_npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vineel/rowjam_npm/issues"
+  },
+  "homepage": "https://github.com/vineel/rowjam_npm"
 }
