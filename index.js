@@ -5,14 +5,14 @@
   
 */
 
-module.exports = module;
+module.exports = Rowjam;
 
 var value = null;
 
-function module(table, makeCopy) {
-  var newMe = Object.create(module.prototype);
+function Rowjam(table, makeCopy) {
+  var newMe = Object.create(Rowjam.prototype);
   if (makeCopy === false) {
-    newMe.value = module.copyValue(table);
+    newMe.value = Rowjam.copyValue(table);
   } else {
     newMe.value = table;        
   }
@@ -20,13 +20,13 @@ function module(table, makeCopy) {
 }
 
 
-module.prototype.copy = function() {
-  var newMe = Object.create(module.prototype);
-  newMe.value = module.copyValue(this.value);
+Rowjam.prototype.copy = function() {
+  var newMe = Object.create(Rowjam.prototype);
+  newMe.value = Rowjam.copyValue(this.value);
   return newMe;      
 }
 
-module.prototype.setTypes = function(typeOptions) {
+Rowjam.prototype.setTypes = function(typeOptions) {
   var table = this.value;
   var n = table.length;
   var typeArr = ['string','number','boolean'];
@@ -69,7 +69,7 @@ module.prototype.setTypes = function(typeOptions) {
   return this;
 }
 
-module.prototype.summarize = function(colsToSum, colsToConcat, delim, rowCountColumn) {
+Rowjam.prototype.summarize = function(colsToSum, colsToConcat, delim, rowCountColumn) {
   var table = this.value;
   if (typeof(colsToSum) === 'undefined' || colsToSum === null) colsToSum = [];
   if (typeof(colsToConcat) === 'undefined' || colsToConcat === null) colsToConcat = [];
@@ -114,7 +114,7 @@ module.prototype.summarize = function(colsToSum, colsToConcat, delim, rowCountCo
   return summary;
 };
 
-module.prototype.filter = function(column, operator, value, caseSensitive)
+Rowjam.prototype.filter = function(column, operator, value, caseSensitive)
 {
   var found = [];
   var matchCase = false;
@@ -152,10 +152,10 @@ module.prototype.filter = function(column, operator, value, caseSensitive)
       keep = val >= value;
       break;
     case 7:
-      keep = module.empty(val);
+      keep = Rowjam.empty(val);
       break;
     case 8:
-      keep = !module.empty(val);
+      keep = !Rowjam.empty(val);
       break;
     case 9: 
       keep = val.indexOf(value) === 0;
@@ -175,7 +175,7 @@ module.prototype.filter = function(column, operator, value, caseSensitive)
   return this;
 };
 
-module.prototype.toLookup = function(keyColumn)
+Rowjam.prototype.toLookup = function(keyColumn)
 {
   var table = this.value;
   
@@ -196,10 +196,10 @@ module.prototype.toLookup = function(keyColumn)
   return lookup;
 };
 
-module.prototype.joinAsArray = function(saveColumn, srcColumn, joinTable, joinColumn)
+Rowjam.prototype.joinAsArray = function(saveColumn, srcColumn, joinTable, joinColumn)
 {
   var table = this.value;
-  var lookup = new module(joinTable).toLookup(joinColumn);
+  var lookup = new Rowjam(joinTable).toLookup(joinColumn);
   
   for (var i=0, n=table.length; i<n; i++) {
     var row = table[i];
@@ -216,10 +216,10 @@ module.prototype.joinAsArray = function(saveColumn, srcColumn, joinTable, joinCo
   return this;
 };
 
-module.prototype.joinAsSummary = function(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
+Rowjam.prototype.joinAsSummary = function(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
 {
   var table = this.value;
-  var lookup = new module(joinTable).toLookup(joinColumn);
+  var lookup = new Rowjam(joinTable).toLookup(joinColumn);
   if (colsToSum === undefined) {colsToSum = []};
   if (colsToConcat === undefined) {colsToConcat = []};
   if (delim === undefined) {delim = "\n"}
@@ -231,9 +231,9 @@ module.prototype.joinAsSummary = function(saveColumn, srcColumn, joinTable, join
     if (joinedArr == undefined) {
       joinedArr = [];
     }
-   var summary = new module(joinedArr).summarize(colsToSum, colsToConcat, delim, rowCountColumn);
+   var summary = new Rowjam(joinedArr).summarize(colsToSum, colsToConcat, delim, rowCountColumn);
    if (saveColumn.length === 0) {
-     module.mergeProperties(row, summary);
+     Rowjam.mergeProperties(row, summary);
    } else {
      row[saveColumn] = summary;
    }
@@ -243,18 +243,18 @@ module.prototype.joinAsSummary = function(saveColumn, srcColumn, joinTable, join
   return this;
 };
 
-module.prototype.to_json = function() {
+Rowjam.prototype.to_json = function() {
   return JSON.stringify(this.value);
 }
 
-module.prototype.dump = function() {
+Rowjam.prototype.dump = function() {
   console.log(JSON.stringify(this.value, null, 4));
   
   return this;
 }
 
 
-module.prototype.values = function(column, unique) {
+Rowjam.prototype.values = function(column, unique) {
   var table = this.value;
   if (typeof(unique) === 'undefined' || unique === null) unique = true;
   
@@ -282,14 +282,14 @@ module.prototype.values = function(column, unique) {
 }
 
 
-module.mergeProperties = function(target, src) {
+Rowjam.mergeProperties = function(target, src) {
   for (var prop in src) {
     target[prop] = src[prop];
   }
   return target;
 }
 
-module.empty = function(data)
+Rowjam.empty = function(data)
 {
   if(typeof(data) == 'number' || typeof(data) == 'boolean')
   { 
@@ -313,19 +313,19 @@ module.empty = function(data)
   return true;
 }
 
-module.copyValue = function(oldObj) {
+Rowjam.copyValue = function(oldObj) {
     var newObj = oldObj;
     if (oldObj && typeof oldObj === 'object') {
         newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
         for (var i in oldObj) {
-            newObj[i] = module.copyValue(oldObj[i]);
+            newObj[i] = Rowjam.copyValue(oldObj[i]);
         }
     }
     return newObj;
 }
 
 
-module.prototype.sort = function(sortOptionArray) {
+Rowjam.prototype.sort = function(sortOptionArray) {
   this.value.sort(function(a,b) {
     for (var i=0; i< sortOptionArray.length; i+=2) {
       var col = sortOptionArray[i];

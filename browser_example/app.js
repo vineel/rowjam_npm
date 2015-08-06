@@ -1,5 +1,7 @@
 var rowjam = require('rowjam_npm');
 
+console.log(rowjam);
+
 var tableA = [
   {
       "MEETING_ID":"16540576",
