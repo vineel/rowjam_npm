@@ -3,6 +3,7 @@ module.exports = function(table, makeCopy) {
   if (typeof(makeCopy) === undefined) {
     makeCopy = true;
   }
+
   var copyValues = function(oldObj) {
       var newObj = oldObj;
       if (oldObj && typeof oldObj === 'object') {
@@ -308,9 +309,6 @@ module.exports = function(table, makeCopy) {
           target[prop] = src[prop];
         }
         return target;
-      },
-
-
-      copyValue: copyValues
-  };
-});
+      }
+  }
+};
