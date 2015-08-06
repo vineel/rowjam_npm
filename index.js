@@ -1,5 +1,23 @@
 module.exports = function(table, makeCopy) {
   var srcTable = table;
+  if (typeof(makeCopy) === undefined) {
+    makeCopy = true;
+  }
+  var copyValues = function(oldObj) {
+      var newObj = oldObj;
+      if (oldObj && typeof oldObj === 'object') {
+          newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+          for (var i in oldObj) {
+              newObj[i] = copyValues(oldObj[i]);
+          }
+      }
+      return newObj;
+  } 
+  
+  if (makeCopy) {
+    srcTable = copyValues(table);
+  }
+  
   return  {
     
     value: srcTable,
@@ -293,15 +311,6 @@ module.exports = function(table, makeCopy) {
       },
 
 
-      copyValue: function(oldObj) {
-          var newObj = oldObj;
-          if (oldObj && typeof oldObj === 'object') {
-              newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
-              for (var i in oldObj) {
-                  newObj[i] = this.copyValue(oldObj[i]);
-              }
-          }
-          return newObj;
-      }      
+      copyValue: copyValues
   };
-}
+});

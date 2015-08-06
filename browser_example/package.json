@@ -1,0 +1,20 @@
+{
+  "name": "rowjam_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "require" : "2.4.20",
+    "browserify" : "11.0.1",
+    "rowjam_npm" : "https://github.com/vineel/rowjam_npm.git"
+  },
+  "author": "Vineel Shah <vshah@glgroup.com> (http://vineel.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vineel/rowjam_npm/issues"
+  },
+  "homepage": "https://github.com/vineel/rowjam_npm#readme"
+}

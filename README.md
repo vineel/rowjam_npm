@@ -1,6 +1,8 @@
 #Rowjam overview
 **Rowjam** is a javascript library which makes it easier to process data from a database. It works on **table arrays**, which are arrays formatted as below. Rowjam does not make any assumptions about and does not care how you obtain the data, it simply helps processing it.
 
+To see how to use rowjam in a project, clone this repo and look at browser_example or node_example.
+
 ### Format for a table array
 For the sake of this discussion, we call tableA a **table array**, each element of the array a **row**, each key in a row a **column**, and each value of a column a **value**. So tableA has 3 rows. Each row has 5 columns. The primary key of the table is the 'MEETING_ID' column.
 
