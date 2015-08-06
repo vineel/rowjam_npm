@@ -43,7 +43,6 @@ For the sake of this discussion, we call tableA a **table array**, each element 
 
 - **values** Returns an array of unique values from the given column across the given table array.
 
-- **copy** Returns a new wrapper method with a copy of the current array. Use it to filter the array in one chain while keeping the original array and chain.
 
 ### Methods for merging a table array into another
 
@@ -255,46 +254,6 @@ For example:
     console.log(JSON.stringify(categoryIndex));
     
 >  ["conference","visit","conference"]
-```
-<hr>
-####copy()
-Chainable: Yes
-
-Copies the chain and the data, so you can process the copy without harming the original.
-
-For Example:
-```
-  var chainA = rowjam(tableA).filter('CATEGORY', '===', 'conference');
-  var chainB = chainA.copy().setTypes({'ESTIMATE_AMOUNT' : 'number'}).filter('ESTIMATE_AMOUNT', '<', 800);
-  
-  chainB.dump();
-> [
-    {
-        "MEETING_ID": "16540578",
-        "EXPENSE_AMOUNT": "1000.00",
-        "ESTIMATE_AMOUNT": 700,
-        "START_DATE": "2015-04-17 08:00:00.000",
-        "CATEGORY": "conference"
-    }
-  ]
-
-  chainA.dump();
-> [
-    {
-        "MEETING_ID": "16540576",
-        "EXPENSE_AMOUNT": "1000.00",
-        "ESTIMATE_AMOUNT": "800.00",
-        "START_DATE": "2015-04-13 08:00:00.000",
-        "CATEGORY": "conference"
-    },
-    {
-        "MEETING_ID": "16540578",
-        "EXPENSE_AMOUNT": "1000.00",
-        "ESTIMATE_AMOUNT": "700.00",
-        "START_DATE": "2015-04-17 08:00:00.000",
-        "CATEGORY": "conference"
-    }
-  ]
 ```
 
 <hr>

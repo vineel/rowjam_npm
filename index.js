@@ -1,3 +1,10 @@
+/**
+  Rowjam
+  A javascript library which makes it easier to process data from a database.
+  
+  
+*/
+
 module.exports = function(table, makeCopy) {
   var srcTable = table;
   if (typeof(makeCopy) === undefined) {
