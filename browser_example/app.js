@@ -6,7 +6,7 @@ var tableA = [
       "EXPENSE_AMOUNT" : "1000.00",
       "ESTIMATE_AMOUNT" : "800.00",
       "START_DATE":"2015-04-13 08:00:00.000",
-      "CATEGORY": ""
+      "CATEGORY": "conference"
   },
   {
       "MEETING_ID":"16540577",
@@ -24,6 +24,12 @@ var tableA = [
   }
 ];
 
-  rowjam(tableA, true).setTypes({'EXPENSE_AMOUNT':'number'}).dump()
+  // rowjam(tableA, true).setTypes({'EXPENSE_AMOUNT':'number'}).dump()
 
-console.log(JSON.stringify(tableA, null, 2));
+// tableA.sort(function(a,b) {
+//   return a.CATEGORY > b.CATEGORY;
+// })
+//
+// rowjam(tableA, false).dump().hello();
+
+rowjam(tableA, true).sort(['START_DATE', 'desc', 'CATEGORY', 'desc']).dump();
