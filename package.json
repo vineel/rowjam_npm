@@ -1,0 +1,19 @@
+{
+  "name": "rowjam",
+  "version": "0.1.0",
+  "description": " A javascript library which makes it easier to process data from a database.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "database",
+    "rows",
+    "utility"
+  ],
+  "author": "Vineel Shah <vshah@glgroup.com>",
+  "license": "ISC"
+}
