@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "test.js",
-  "scripts": {
-    "test": "node test.js"
-  },
   "dependencies": {
     "require" : "2.4.20",
     "browserify" : "11.0.1",
