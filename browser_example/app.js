@@ -86,6 +86,9 @@ var tableA = [
   console.log("Let's use the table below to join against.");
   rowjam.print(tableB);
   
+  console.log("Let's make sure that tableB.MEETING_ID is a string. Let's affect the original variable.");
+  rowjam(tableB, false).setTypes({'MEETING_ID':'string'});
+  
   console.log("Let's join sub-arrays of tableB to tableA and save it to new column named 'fees'.");
   rowjam(tableA, true).setTypes({'MEETING_ID':'string'}).joinAsArray('fees', 'MEETING_ID', tableB, 'MEETING_ID').dump();
   
@@ -95,3 +98,4 @@ var tableA = [
   console.log("Let's merge the summary columns into source rows.");
   rowjam(tableA, true).setTypes({'MEETING_ID' : 'string'}).joinAsSummary('', 'MEETING_ID', tableB, 'MEETING_ID', ['SPEAKER_FEE'],[], '', 'SPEAKERS').dump();
   
+  console.log("done.");
