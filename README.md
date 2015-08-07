@@ -1,4 +1,4 @@
-#Rowjam overview
+#Rowjam Overview
 **Rowjam** is a javascript library which makes it easier to process data from a database. It works on **table arrays**, which are arrays formatted as below. Rowjam does not make any assumptions about and does not care how you obtain the data, it simply helps processing it.
 
 To see how to use rowjam in a project, clone this repo and look at browser_example or node_example.
@@ -51,7 +51,7 @@ For the sake of this discussion, we call tableA a **table array**, each element 
 - **joinSummary** Goes through each row of the source table, attaching a summary of the join table as a key-value object. It matches between two given keys and summarizes using the **summarize** method.
 
 
-## Using rowjam
+## Using Rowjam
 **Rowjam** is set up to use "chaining" to accomplish its work. 
 
 To demonstrate, let's finds the summary of expenses and estimates for March 13, 2015 from the above table array.
@@ -261,6 +261,12 @@ For example:
 Chainable: Yes
 
 Prints out the current array to the console as pretty-printed JSON.
+
+<hr>
+####print(data)
+Chainable: No
+
+Prints out data to the console as pretty-printed JSON. Just a utility function.
 
 <hr>
 ####joinAsArray(saveColumn, srcColumn, joinTable, joinColumn)
