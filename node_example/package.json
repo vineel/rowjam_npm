@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "test.js",
-  "scripts": {
-    "test": "node test.js"
-  },
   "dependencies": {
     "rowjam_npm" : "https://github.com/vineel/rowjam_npm.git"
   },

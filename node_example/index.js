@@ -45,11 +45,11 @@ var tableA = [
   var lookup = rowjam(tableA).toLookup('CATEGORY');
   rowjam.print(lookup);
 
-  console.log('Extract an array of values from a specific column.');
+  console.log('Extract an array of values from a specific column. (CATEGORY)');
   var arr = rowjam(tableA).values('CATEGORY', false);
   rowjam.print(arr);
 
-  console.log('Extract an array of UNIQUE values from a specific column.');
+  console.log('Extract an array of UNIQUE values from a specific column. (CATEGORY)');
   var arr = rowjam(tableA).values('CATEGORY', true);
   rowjam.print(arr);
 

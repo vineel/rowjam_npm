@@ -5,5 +5,11 @@
   <li>run `npm install`</li>
   <li>In javascript file, put 
   `var rowjam = require("rowjam_npm");`</li>
-  <li>run `node index.js`</li>
+</ol>
+
+#To run the node example
+<ol>
+  <li>npm install</li>
+  <li>In javascript file, put 
+  `var rowjam = require("rowjam_npm");`</li>
 </ol>
