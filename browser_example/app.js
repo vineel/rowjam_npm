@@ -53,8 +53,8 @@ var tableA = [
   var arr = rowjam(tableA).values('CATEGORY', true);
   rowjam.print(arr);
 
-  console.log('Sort the array based on CATEGORY desc, START_DATE asc');
-  var jam2 = rowjam(tableA).sort(['CATEGORY', 'asc']).dump();
+  console.log('Sort the array based on CATEGORY asc, START_DATE desc');
+  var jam2 = rowjam(tableA).sort(['CATEGORY', 'asc', 'START_DATE', 'desc']).dump();
   
   var tableB = [
       {
