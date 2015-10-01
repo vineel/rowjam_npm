@@ -241,6 +241,47 @@ Rowjam.prototype.joinAsSummary = function(saveColumn, srcColumn, joinTable, join
   return this;
 };
 
+/*
+  takes an array of keys [key1, key2, key3]  and flattens data from [{key1:value,key2:value,key3:value}] to [[value,value,value],[value,value,value]] in the order of given keys.
+*/
+Rowjam.prototype.flatten_rows = function(keys) {
+  var table = this.value;
+  var outArray = [];
+  if (!keys) {
+    return this.flatten_each_row();
+  }
+  var nKeys = keys.length;
+  for (var i=0; i<table.length; i++) {
+    var row = table[i];
+    var arrayRow = [];    
+    for (var k=0; k<nKeys; k++) {
+      var key = keys[k];
+      arrayRow.push(row[key]);
+    }
+    outArray.push(arrayRow);
+  }
+  return outArray;
+}
+
+Rowjam.prototype.flatten_each_row = function()
+{
+  var table = this.value;
+  var outArray = [];
+  for (var i=0; i<table.length; i++) {
+    var row = table[i];
+    var arrayRow = [];    
+    var keys = Object.keys(row);
+    var nKeys = keys.length;
+    
+    for (var k=0; k<nKeys; k++) {
+      var key = keys[k];
+      arrayRow.push(row[key]);
+    }
+    outArray.push(arrayRow);
+  }
+  return outArray;
+}
+
 Rowjam.prototype.to_json = function() {
   return JSON.stringify(this.value);
 }
