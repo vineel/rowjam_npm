@@ -112,13 +112,36 @@ Rowjam.prototype.summarize = function(colsToSum, colsToConcat, delim, rowCountCo
   return summary;
 };
 
+RowJam.prototype.findFirst = function(column, operator, value, caseSensitive)
+{
+  var found = Rowjam.multipurposeFilter(this.value, column, operator, value, caseSensitive, 1);
+  if (found.length > 0) {
+    return found[0];
+  }
+  return null;
+}
+
+Rowjam.prototype.find = function(column, operator, value, caseSensitive)
+{
+  return Rowjam.multipurposeFilter(this.value, column, operator, value, caseSensitive, 0);
+}
+
 Rowjam.prototype.filter = function(column, operator, value, caseSensitive)
 {
+  var found = Rowjam.multipurposeFilter(this.value, column, operator, value, caseSensitive, 0);
+  this.value = found;
+  
+  return this;
+}
+
+Rowjam.multipurposeFilter = function(table, column, operator, value, caseSensitive, maxToFind)
+{
   var found = [];
+  var numFound = 0;
   var matchCase = false;
   if (typeof(caseSensitive) === undefined || caseSensitive === null) matchCase = true;
 
-  var table = this.value;
+  // var table = this.value;
   var op = ['===', '=', '==','<', '>', '<=', '>=', 'empty', 'notempty', 'starts', 'contains'].indexOf(operator);
   if (value &&  typeof(value) === 'string' && matchCase) {
     value = value.toLowerCase();
@@ -164,13 +187,18 @@ Rowjam.prototype.filter = function(column, operator, value, caseSensitive)
     }
     
     if (keep) {
+      numFound += 1;
       found.push(row);
+      if (maxToFind > 0 && maxToFind === numFound) {
+        return found;
+      }
     }
   }
-  
-  this.value = found;
-  
-  return this;
+
+  return found;
+  // this.value = found;
+  //
+  // return this;
 };
 
 Rowjam.prototype.toLookup = function(keyColumn)

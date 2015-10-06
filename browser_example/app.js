@@ -34,6 +34,12 @@ var tableA = [
   console.log("Datatypes sometimes get mixed up, so we make sure they're right (and predictable).");
   jam.setTypes({'MEETING_ID':'string', 'EXPENSE_AMOUNT':'number', 'ESTIMATE_AMOUNT':'number', 'START_DATE':'string'}).dump();
 
+  console.log("Find a row where MEETING_ID===16540577");
+  rowjam.print(jam.findFirst('MEETING_ID', '===', '16540577'));
+  
+  console.log("Find an array of rows where ESTIMATE_AMOUNT is at least 800");
+  rowjam.print(jam.find('ESTIMATE_AMOUNT', '>=', 800));
+
   console.log('filter by CATEGORY === "conference"');
   jam.filter('CATEGORY', '===', 'conference').dump();
 
