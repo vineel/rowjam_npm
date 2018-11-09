@@ -1,4 +1,4 @@
-#Rowjam Overview
+# Rowjam Overview
 **Rowjam** is a javascript library which makes it easier to process data from a database. It works on **table arrays**, which are arrays formatted as below. Rowjam does not make any assumptions about and does not care how you obtain the data, it simply helps processing it.
 
 To see how to use rowjam in a project, clone this repo and look at browser_example or node_example.
@@ -89,7 +89,7 @@ Now that you have a rowjam wrapper object, you can call its methods.
     .summarize(['ESTIMATE_AMOUNT', 'EXPENSE_AMOUNT'])
 ... Adds up values for ESTIMATE_AMOUNT and EXPENSE_AMOUNT from all the rows left in the chain. Returns the summary object and ends the chain.
 
-####The *value* object
+#### The *value* object
 The chainable methods work by saving their output in the wrapper's **.value** object. For example, to get the array after a filter operation, grab the value. Like this:
 
 ```
@@ -114,8 +114,8 @@ The chainable methods work by saving their output in the wrapper's **.value** ob
   ]
 ```
 
-##Method Reference
-####rowjam(table, makeCopy = true)
+## Method Reference
+#### rowjam(table, makeCopy = true)
 This is the constructor function for the chain. Starts a chain.
 
 **table** A table array to work on. 
@@ -125,7 +125,7 @@ This is the constructor function for the chain. Starts a chain.
 Chainable: Yes. Access the value object of the chain for the raw array.
 
 <hr>
-####filter(column, operator, value, caseSensitive = true)
+#### filter(column, operator, value, caseSensitive = true)
 This returns a new array in which all the rows match the operation **(column *'operator'* value)**. Operators will act on columns without casting, so types have to be correct before using this.
 
 Chainable: Yes. Access the value object of the chain for the raw array.
@@ -151,7 +151,7 @@ Chainable: Yes. Access the value object of the chain for the raw array.
 **caseSensitive** If false, compares all values without case sensitivity. Tries to check if values are strings before processing.
 
 <hr>
-####summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
+#### summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
 Chainable: No.
 
 
@@ -166,7 +166,7 @@ Iterates through the table array, adding up each column in colsToSum and concate
 **rowCountColumn**  The name of a new column to hold the length of the array. (Useful for calculating averages.)
 
 <hr>
-####toLookup(keyColumn)
+#### toLookup(keyColumn)
 Chainable: No.
 
 Uses the values in keyColumn to transform the table array into a lookup object of the format:
@@ -214,7 +214,7 @@ For Example:
 ```
 
 <hr>
-####setTypes(typeOptions)
+#### setTypes(typeOptions)
 Chainable: Yes
 
 Attempts to ensure that the given columns have values of the given javascript types. Unspecified columns are left alone.
@@ -230,7 +230,7 @@ For example (this is the complete list of supported types):
     }
 
 <hr>
-####values(column, unique = true)
+#### values(column, unique = true)
 Chainable: No
 
 Extracts an array of values for the given column. If unique is true, only returns unique values.
@@ -257,19 +257,19 @@ For example:
 ```
 
 <hr>
-####dump()
+#### dump()
 Chainable: Yes
 
 Prints out the current array to the console as pretty-printed JSON.
 
 <hr>
-####print(data)
+#### print(data)
 Chainable: No
 
 Prints out data to the console as pretty-printed JSON. Just a utility function.
 
 <hr>
-####joinAsArray(saveColumn, srcColumn, joinTable, joinColumn)
+#### joinAsArray(saveColumn, srcColumn, joinTable, joinColumn)
 Chainable: Yes
 
 "Fills out" the source array with pieces of a joined array, where sourceTable.srcColumn = joinTable.joinColumn. The new array is set to a new column named by saveColumn. If there are no joinable rows, the new value is []. This is similar to a join operation in a relation database.
@@ -371,7 +371,7 @@ rowjam(tableA).setTypes({'MEETING_ID':'string'}).joinAsArray('fees', 'MEETING_ID
   ]
 ```
 <hr>
-####joinAsSummary(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
+#### joinAsSummary(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
 Chainable: No
 
 "Fills out" the source array with the **summary** of pieces of a joined array, where sourceTable.srcColumn = joinTable.joinColumn. The new summary is added to a new column named by saveColumn. If saveColumn is "", the summary fields are added directly to the source row. 
