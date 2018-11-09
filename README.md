@@ -151,7 +151,7 @@ Chainable: Yes. Access the value object of the chain for the raw array.
 **caseSensitive** If false, compares all values without case sensitivity. Tries to check if values are strings before processing.
 
 <hr>
-#### summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
+### summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
 Chainable: No.
 
 
