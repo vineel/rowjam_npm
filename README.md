@@ -4,7 +4,7 @@
 
 To see how to use rowjam in a project, clone this repo and look at browser_example or node_example.
 
-## Format for a table array
+### Format for a table array
 
 For the sake of this discussion, we call tableA a **table array**, each element of the array a **row**, each key in a row a **column**, and each value of a column a **value**. So tableA has 3 rows. Each row has 5 columns. The primary key of the table is the 'MEETING_ID' column.
 
@@ -34,7 +34,7 @@ var tableA = [
 ];
 ```
 
-## Methods for individual table arrays
+### Methods for individual table arrays
 
 - **filter** Reduce a table array by searching for columns that match a given condition (column _'operator'_ value). Available operators are: ===, <, >, <=, >==, empty, notempty, starts, contains.
 
@@ -46,7 +46,7 @@ var tableA = [
 
 - **values** Returns an array of unique values from the given column across the given table array.
 
-## Methods for merging a table array into another
+### Methods for merging a table array into another
 
 - **joinAsArray** Goes through each row of the source table, attaching an array of matching rows from the join table. It matches between two given columns.
 
@@ -81,7 +81,7 @@ This prints the **summary** object...
 }
 ```
 
-## Walkthru
+#### Walkthru
 
     rowjam(tableA)
 
@@ -101,7 +101,7 @@ Now that you have a rowjam wrapper object, you can call its methods.
 
 ... Adds up values for ESTIMATE_AMOUNT and EXPENSE_AMOUNT from all the rows left in the chain. Returns the summary object and ends the chain.
 
-## The _value_ object
+#### The _value_ object
 
 The chainable methods work by saving their output in the wrapper's **.value** object. For example, to get the array after a filter operation, grab the value. Like this:
 
@@ -129,7 +129,7 @@ The chainable methods work by saving their output in the wrapper's **.value** ob
 
 ## Method Reference
 
-## rowjam(table, makeCopy = true)
+#### rowjam(table, makeCopy = true)
 
 This is the constructor function for the chain. Starts a chain.
 
@@ -140,8 +140,10 @@ This is the constructor function for the chain. Starts a chain.
 Chainable: Yes. Access the value object of the chain for the raw array.
 
 <hr>
-## filter(column, operator, value, caseSensitive = true)
-This returns a new array in which all the rows match the operation **(column *'operator'* value)**. Operators will act on columns without casting, so types have to be correct before using this.
+
+#### filter(column, operator, value, caseSensitive = true)
+
+This returns a new array in which all the rows match the operation **(column _'operator'_ value)**. Operators will act on columns without casting, so types have to be correct before using this.
 
 Chainable: Yes. Access the value object of the chain for the raw array.
 
@@ -166,7 +168,9 @@ Chainable: Yes. Access the value object of the chain for the raw array.
 **caseSensitive** If false, compares all values without case sensitivity. Tries to check if values are strings before processing.
 
 <hr>
-## summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
+
+### summarize(colsToSum = [], colsToConcat = [], delim = "\n", rowCountColumn = "")
+
 Chainable: No.
 
 Iterates through the table array, adding up each column in colsToSum and concatenating each column in colsToConcat using delimiter delim. If rowCountColumn is given, creates a new column key of that name and gives it the length of the array as a value. Returns an object whose keys are from colsToSum and colsToConcat, and has a rowCountColumn if t hat is specified.
@@ -180,7 +184,9 @@ Iterates through the table array, adding up each column in colsToSum and concate
 **rowCountColumn** The name of a new column to hold the length of the array. (Useful for calculating averages.)
 
 <hr>
-## toLookup(keyColumn)
+
+#### toLookup(keyColumn)
+
 Chainable: No.
 
 Uses the values in keyColumn to transform the table array into a lookup object of the format:
@@ -229,7 +235,9 @@ For Example:
 ```
 
 <hr>
-## setTypes(typeOptions)
+
+#### setTypes(typeOptions)
+
 Chainable: Yes
 
 Attempts to ensure that the given columns have values of the given javascript types. Unspecified columns are left alone.
@@ -245,7 +253,9 @@ For example (this is the complete list of supported types):
     }
 
 <hr>
-## values(column, unique = true)
+
+#### values(column, unique = true)
+
 Chainable: No
 
 Extracts an array of values for the given column. If unique is true, only returns unique values.
@@ -270,19 +280,25 @@ For example:
 ```
 
 <hr>
-## dump()
+
+#### dump()
+
 Chainable: Yes
 
 Prints out the current array to the console as pretty-printed JSON.
 
 <hr>
-## print(data)
+
+#### print(data)
+
 Chainable: No
 
 Prints out data to the console as pretty-printed JSON. Just a utility function.
 
 <hr>
-## joinAsArray(saveColumn, srcColumn, joinTable, joinColumn)
+
+#### joinAsArray(saveColumn, srcColumn, joinTable, joinColumn)
+
 Chainable: Yes
 
 "Fills out" the source array with pieces of a joined array, where sourceTable.srcColumn = joinTable.joinColumn. The new array is set to a new column named by saveColumn. If there are no joinable rows, the new value is []. This is similar to a join operation in a relation database.
@@ -387,7 +403,9 @@ rowjam(tableA).setTypes({'MEETING_ID':'string'}).joinAsArray('fees', 'MEETING_ID
 ```
 
 <hr>
-## joinAsSummary(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
+
+#### joinAsSummary(saveColumn, srcColumn, joinTable, joinColumn, colsToSum, colsToConcat, delim, rowCountColumn)
+
 Chainable: No
 
 "Fills out" the source array with the **summary** of pieces of a joined array, where sourceTable.srcColumn = joinTable.joinColumn. The new summary is added to a new column named by saveColumn. If saveColumn is "", the summary fields are added directly to the source row.
